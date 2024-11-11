@@ -32,8 +32,29 @@ Content-Type: application/json
 ### 
 DELETE {{url}}/autores/8
 
-
-
+###
 
 //POSTS
+
+GET {{url}}/posts
+
+###
+
+
+GET {{url}}/posts/2
+
+###
+
+POST {{url}}/posts
+Content-Type: application/json
+
+{
+    "titulo":"Cuentacuentos",
+    "descripcion":"cuentos para dormir a cualquier niño",
+    "categoria": "Arte",
+    "autor_id":3
+
+}
+
+
 
