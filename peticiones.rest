@@ -1,0 +1,39 @@
+@url = http://localhost:3000/api
+
+//AUTORES
+GET {{url}}/autores
+
+###
+
+GET {{url}}/autores/6
+
+###
+
+POST {{url}}/autores
+Content-Type: application/json
+
+{
+    "nombre":"Pepita",
+    "email":"pepita@gmail.com",
+    "imagen":"imagen1.com"
+}
+
+###
+
+PUT {{url}}/autores/4
+Content-Type: application/json
+
+{
+    "nombre": "Juan",
+    "email":"juan@gmail.com",
+    "imagen":"imagenjuan.jpg"
+}
+
+### 
+DELETE {{url}}/autores/7
+
+
+
+
+//POSTS
+
