@@ -1,3 +1,4 @@
+const { updateAutor } = require("../models/autores.models")
 const { getAllPosts, getById, createPosts } = require("../models/posts.models")
 
 
@@ -31,10 +32,23 @@ const insertPosts = async (req,res,next) =>{
     
 }
 
+const changePosts = async (req,res,next) =>{
+    const {postId} = req.params
+    try {
+        const [result] = await updateAutor(postId,req.body)
+        console.log(result)
+        const [post] = await getById(postId)
+        res.json(post)
 
+    } catch (error) {
+        next(error)
+    }
+
+}
 
 module.exports = {
     selectAllPosts,
     selectById,
-    insertPosts
+    insertPosts,
+    changePosts
 }

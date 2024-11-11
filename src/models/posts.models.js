@@ -14,6 +14,10 @@ function createPosts({titulo, descripcion, categoria, autor_id}){
  return pool.query('insert into posts (titulo, descripcion, categoria, autor_id) values(?, ?, ?, ?)',[titulo, descripcion, categoria, autor_id])
 }
 
+function updatePosts (postId,{titulo,descripcion}){
+    return pool.query('update posts set titulo = ?, descripcion = ? id = ?',[titulo,descripcion,postId])
+}
+
 module.exports = {getAllPosts, getById, createPosts}
 
 
