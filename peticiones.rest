@@ -5,7 +5,7 @@ GET {{url}}/autores
 
 ###
 
-GET {{url}}/autores/6
+GET {{url}}/autores/2
 
 ###
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-PUT {{url}}/autores/4
+PUT {{url}}/autores/9
 Content-Type: application/json
 
 {
@@ -30,10 +30,48 @@ Content-Type: application/json
 }
 
 ### 
-DELETE {{url}}/autores/7
+DELETE {{url}}/autores/10
 
-
-
+###
 
 //POSTS
+
+GET {{url}}/posts
+
+###
+
+GET {{url}}/posts/8
+###
+
+GET {{url}}/posts/autor/3
+
+###
+
+POST {{url}}/posts
+Content-Type: application/json
+
+{
+    "titulo":"Deporte de raqueta",
+    "descripcion":"Descubre todos los deportes que existen de raqueta, te sorprenderas",
+    "categoria": "Deportes",
+    "autor_id":2
+
+}
+
+###
+
+PUT {{url}}/posts/8
+Content-Type: application/json
+
+{
+    "titulo":"El padel",
+    "descripcion":"Descucbre el mundo del padel, el deporte de moda",
+    "autor_id": "1"
+}
+
+
+###
+
+DELETE {{url}}/posts/10
+
 

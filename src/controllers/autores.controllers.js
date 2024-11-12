@@ -52,6 +52,9 @@ const removeAutor = async (req,res,next) =>{
     try {
         const [autorDelete] = await getById(autorId) 
          const [result]  = await deleteAutor(autorId)
+         if(result.affectedRows === 0 ){
+            return  res.status(404).json({message: "No existe autor con ese id "})
+        }
          res.json(autorDelete)
     } catch (error) {
         next(error)
