@@ -1,5 +1,5 @@
-const { updateAutor } = require("../models/autores.models")
-const { getAllPosts, getById, createPosts } = require("../models/posts.models")
+
+const { getAllPosts, getById, createPosts, updatePosts, deletePost, getPostsFromAutor } = require("../models/posts.models")
 
 
 const selectAllPosts = async (req,res,next) =>{
@@ -11,13 +11,31 @@ const selectAllPosts = async (req,res,next) =>{
  }
 }
 
+
 const selectById = async (req, res, next) =>{
     const {postId} = req.params
     try {
         const [result] = await getById(postId)
+        if(result.length === 0){
+            return res.status(404).json({message: "Post no encontrado"})
+        }
         res.json(result)
     } catch (error) {
         
+    }
+}
+
+const selectAllPostsFromAutor = async (req,res,next) =>{
+    const {autorId} = req.params
+    try {
+        
+        const [result] = await getPostsFromAutor(autorId)
+        if(result.length === 0 ){
+            return res.status(404).json({message: "Autor no encontrado"})
+        }
+        res.json(result)
+    } catch (error) {
+        next(error)
     }
 }
 
@@ -32,11 +50,10 @@ const insertPosts = async (req,res,next) =>{
     
 }
 
-const changePosts = async (req,res,next) =>{
+const changePost = async (req,res,next) =>{
     const {postId} = req.params
     try {
-        const [result] = await updateAutor(postId,req.body)
-        console.log(result)
+        const [result] = await updatePosts(postId,req.body)
         const [post] = await getById(postId)
         res.json(post)
 
@@ -46,9 +63,29 @@ const changePosts = async (req,res,next) =>{
 
 }
 
+
+const removePost = async (req,res,next) =>{
+    const {postId} = req.params
+    try {
+        const [postDelete] = await getById(postId)
+        const [result] = await deletePost(postId)
+        if(result.affectedRows === 0 ){
+            return  res.status(404).json({message: "No existe Post con ese id "})
+        }
+        res.json(postDelete)
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
 module.exports = {
     selectAllPosts,
+    selectAllPostsFromAutor,
     selectById,
     insertPosts,
-    changePosts
+    changePost,
+    removePost
+    
 }
